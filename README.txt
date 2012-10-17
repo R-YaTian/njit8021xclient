@@ -1,5 +1,8 @@
 [README for 802.1X client windows ver]
 
+why
+we all hate iNode
+
 fork from
 njit8021xclient: https://github.com/liuqun/njit8021xclient
 
