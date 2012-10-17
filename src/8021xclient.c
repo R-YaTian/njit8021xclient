@@ -1,4 +1,4 @@
-#ifdef HAVE_CONFIG_H
+#if HAVE_CONFIG_H
 #include "config.h"
 #endif
 
@@ -14,11 +14,11 @@
 #define LOCALEDIR "/usr/local/share/locale"
 #endif
 
-#include "hello.h"
+#include "8021xclient.h"
 
 const struct GlobalConfig g_config = {
-	.package_name    = PACKAGE_NAME,
-	.package_version = PACKAGE_VERSION,
-	.locale_dir      = LOCALEDIR,
+	/*.package_name    = */ PACKAGE_NAME,
+	/*.package_version = */ PACKAGE_VERSION,
+	/*.locale_dir      = */ LOCALEDIR,
 };
 

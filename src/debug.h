@@ -25,11 +25,11 @@
  * 注：宏NDEBUG源自C语言惯例
  *
  */
-#ifdef NDEBUG
+/*#ifdef NDEBUG
 #	define DPRINTF(...)
-#else
+#else*/
 #	include <stdio.h>	// 导入函数原型fprintf(stderr,"%format",...)
 #	define DPRINTF(...)	fprintf(stderr, __VA_ARGS__)
-#endif
+/*#endif*/
 
 #endif // DEBUG_H
