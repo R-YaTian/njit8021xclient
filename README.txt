@@ -1,5 +1,8 @@
 [README for 802.1X client windows ver]
 
+my blog
+http://tengattack.com/
+
 why
 we all hate iNode
 
@@ -10,4 +13,8 @@ depends on
 WinPcap: http://www.winpcap.org/
 
 If you want to used it, please install winpcap first.
-If you are windows8, you need run the install package in windows7 Compatibility mode to install it successfully.
+If you are windows8, you need run the WinPcap install package in windows7 Compatibility mode to install it successfully.
+
+more info (更多信息及使用说明)
+http://tengattack.com/projects/8021xclient-for-windows
+
