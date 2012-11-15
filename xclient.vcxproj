@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\debug.h" />
     <ClInclude Include="src\8021xclient.h" />
+    <ClInclude Include="src\md5.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FBFE083E-43A7-485A-9B87-334D1B2EB76B}</ProjectGuid>
@@ -56,7 +57,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>D:\Programme\SDKs;D:\Programme\SDKs\WpdPack\Include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Programme\SDKs\WpdPack\Lib;$(LibraryPath)</LibraryPath>
-    <IntDir>$(Configuration)\tmp\</IntDir>
+    <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
