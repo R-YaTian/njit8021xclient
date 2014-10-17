@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <pcaphelper.h>
+#include "pcaphelper.h"
 
 #ifndef WIN32
 #include <sys/socket.h>
