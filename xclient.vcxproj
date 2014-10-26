@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\auth.c" />
-    <ClCompile Include="src\fillmd5.c" />
     <ClCompile Include="src\ip.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\8021xclient.c" />

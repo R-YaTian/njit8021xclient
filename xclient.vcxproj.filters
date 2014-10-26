@@ -18,9 +18,6 @@
     <ClCompile Include="src\auth.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\fillmd5.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\ip.c">
       <Filter>源文件</Filter>
     </ClCompile>
