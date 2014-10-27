@@ -1,21 +1,19 @@
 ﻿[README for 802.1X client windows ver]
 
-my blog
-http://tengattack.com/
-
-why
-we all hate iNode
-
 fork from
-njit8021xclient: https://github.com/liuqun/njit8021xclient
+njit8021xclient: https://github.com/tengattack/8021xclient-for-windows
 
 depends on
 WinPcap: http://www.winpcap.org/
 Please put the libary of WinPcap into WpdPack to compile and link the target.
+.Net Framework 3.5: http://www.microsoft.com/
 
-If you want to used it, please install winpcap first.
-If you are windows8, you need run the WinPcap install package in windows7 Compatibility mode to install it successfully.
+原始项目来自伟大的: https://github.com/liuqun/njit8021xclient
+以及tengattack的windows分支。
+
+本项目是对tengattack分支的修改，将其输出修改为DLL文件。然后添加了Nxsharp（njit8021xclient-sharp的缩写）程序作为GUI前端（项目目录在Nxsharp下）。
+其中Nxsharp程序依赖.Net Framework 3.5运行环境。项目在VS2013下编译生成，编译目标运行环境为x86。
 
 more info (更多信息及使用说明)
-http://tengattack.com/projects/8021xclient-for-windows
+
 
