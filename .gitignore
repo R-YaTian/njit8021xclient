@@ -3,3 +3,5 @@
 /xclient.v11.suo
 /Debug
 WpdPack/
+*.ipch
+Nxsharp/obj/
