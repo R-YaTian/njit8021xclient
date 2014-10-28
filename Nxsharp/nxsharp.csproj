@@ -131,8 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="128X128.ico" />
-    <None Include="Resources\NXSharp.exe.Config" />
     <None Include="Resources\xclient.dll" />
+    <None Include="Resources\NXSharp.exe.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

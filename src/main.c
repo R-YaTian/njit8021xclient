@@ -16,10 +16,12 @@
 
 
 //log work
-extern char logbuffer[100] = ""; //store the log 
-static int isReaded = 1;
+static char logbuffer[5][100] = { "", "", "", "", "" }; //store the log
+static char outputbuffer[500] = "";
+static int writer_ptr = 0;
+static int log_is_readed = 1;
 extern _declspec(dllexport) char *read_log();
-void write_log();
+void write_log(char *info);
 
 //auth thread work
 DWORD WINAPI auth_thread_func();
@@ -58,20 +60,41 @@ void stop_auth_thread()
 
 char *read_log()
 {
-	if (!isReaded)
+	//循环读取缓存的消息
+	if (log_is_readed == 0)
 	{
-		isReaded = 1;
-		return logbuffer;	
+		memset(outputbuffer, 0, 500);
+		strcat(outputbuffer, logbuffer[0]);
+		for (int i = 1; i < 5; i++)
+		{
+			if (strlen(logbuffer[i]) > 0)
+			{
+				strcat(outputbuffer, "\r\n");
+				strcat(outputbuffer, logbuffer[i]);
+			}
+		}
+		memset(logbuffer, 0, 500);
+		log_is_readed = 1;
+		return outputbuffer;
 	}
-	else return "";
+	else
+	{
+		return "";
+	}
+
 }
 void write_log(char* info)
 {
+	//循环写入缓存的消息
 	if (strlen(info) < 99)
 	{
-		strcpy(logbuffer, info);
-		isReaded = 0;
+		strcpy(logbuffer[writer_ptr], info);
+		if (writer_ptr == 4)
+			writer_ptr = 0;
+		else
+			writer_ptr++;
 	}
+	log_is_readed = 0;
 	return;
 }
 

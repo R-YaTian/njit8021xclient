@@ -156,12 +156,7 @@ namespace gui
         {
             string tmp = RefComm.read_log();
 
-            //自动更新IP
-            if (tmp.Contains("Success"))
-            {
-                NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
-                textBox3.AppendText("IP Refreshed.\r\n");
-            }
+
 
             if (tmp.Length != 0)
             {
@@ -176,6 +171,12 @@ namespace gui
                 textBox3.SelectionLength = 0;
                 textBox3.ScrollToCaret();
                 textBox3.AppendText(tmp);
+            }
+            //自动更新IP
+            if (tmp.Contains("Success"))
+            {
+                NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
+                textBox3.AppendText("IP Refreshed.\r\n");
             }
 
         }
@@ -192,6 +193,11 @@ namespace gui
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             Cfg.device = comboBox1.Text;
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

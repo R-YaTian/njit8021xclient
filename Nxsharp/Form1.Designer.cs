@@ -116,6 +116,7 @@
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
             this.textBox3.Text = "njit8021xclient-sharp\r\nv0.1";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // panel1
             // 
