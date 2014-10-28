@@ -46,8 +46,9 @@ namespace gui
             }
             //this.comboBox1.Text = "1";
             //this.comboBox1.Items = NetworkInterfaceAvaliable.adapters_avaliable.Description;
+            
         }
-
+        System.Timers.Timer t = new System.Timers.Timer(50); //此为日志框的刷新计时器
         private void button3_Click(object sender, EventArgs e)
         {
             //if(this.Height == 375)
@@ -103,7 +104,6 @@ namespace gui
             button2.Enabled = true;
             panel1.Enabled = false;
             textBox3.Text = "";
-            System.Timers.Timer t = new System.Timers.Timer(50);
             t.Elapsed += new System.Timers.ElapsedEventHandler(refreshText);
             t.AutoReset = true;
             t.Enabled = true;
@@ -145,6 +145,7 @@ namespace gui
             button1.Enabled = true;
             button2.Enabled = true;
             textBox3.AppendText("\r\n已登出");
+            t.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

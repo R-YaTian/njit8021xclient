@@ -29,6 +29,7 @@ static 	char sDeviceName[100];
 extern int stop_flag = 1;
 extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName);
 extern _declspec(dllexport) void stop_auth_thread();
+extern _declspec(dllexport) void exit_dll();
 //from auth.c
 extern int Authentication(const char *UserName, const char *Password, const char *DeviceName);
 
@@ -72,4 +73,9 @@ void write_log(char* info)
 		isReaded = 0;
 	}
 	return;
+}
+
+void exit_dll()
+{
+	exit(0);
 }

@@ -47,5 +47,10 @@ namespace gui
             MessageBox.Show("请重新打开程序！");
             System.Environment.Exit(0);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //TODO 
+        }
     }
 }
