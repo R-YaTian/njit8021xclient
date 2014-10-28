@@ -115,7 +115,7 @@
             this.textBox3.Size = new System.Drawing.Size(185, 143);
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
-            this.textBox3.Text = "njit8021xclient-sharp\r\nv0.1";
+            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 0.1";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // panel1
@@ -232,6 +232,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "NX#";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

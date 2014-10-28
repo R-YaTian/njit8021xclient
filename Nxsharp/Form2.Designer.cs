@@ -76,9 +76,9 @@
             this.textBox1.Size = new System.Drawing.Size(278, 151);
             this.textBox1.TabIndex = 1;
             this.textBox1.TabStop = false;
-            this.textBox1.Text = "版本：0.1\r\n兼容iNode CH V5.20-0407\r\n\r\n本工具依赖微软 .NET framework3.5 运行库，请从微软官方网站下载安装。\r\n本工具" +
-    "依赖 winpcap 库，请从winpcap官方网站下载安装。\r\n本工具在njit8021xclient项目基础上开发，遵循GPLv3协议开源，代码托管于git" +
-    "hub。";
+            this.textBox1.Text = "njit8021xclient-sharp  ver:0.1\r\n兼容iNode CH V5.20-0407\r\n\r\n本工具依赖微软 .NET framework3." +
+    "5 运行库，请从微软官方网站下载安装。\r\n本工具依赖 winpcap 库，请从winpcap官方网站下载安装。\r\n本工具在njit8021xclient项目基础" +
+    "上开发，遵循GPLv3协议开源，代码托管于github。";
             // 
             // Form2
             // 

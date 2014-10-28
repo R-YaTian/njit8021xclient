@@ -44,7 +44,7 @@ namespace gui
             if (!File.Exists(path + cfgFileName))
             {
                 Cfg.CreateFile();
-                File.SetAttributes(path + cfgFileName, FileAttributes.Hidden);
+                //不能使用隐藏的配置文件
                 MessageBox.Show("首次生成配置文件，请再次打开！");
                 return;
             }

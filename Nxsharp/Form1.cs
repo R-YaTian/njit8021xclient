@@ -163,20 +163,28 @@ namespace gui
                 if (textBox3.Text.Length > 32700)
                 {
                     textBox3.Text = "";
-                    textBox3.AppendText("");
+                    textBox3.ScrollToCaret();
+                    //textBox3.AppendText("");
                 }
-                textBox3.ScrollToCaret();
-                textBox3.Focus();
-                textBox3.SelectionStart=textBox3.Text.Length;
-                textBox3.SelectionLength = 0;
-                textBox3.ScrollToCaret();
+                textBox3.ScrollToCaret();//自动滚屏
+                //textBox3.Focus();
+                //textBox3.SelectionStart=textBox3.Text.Length;
+                //textBox3.SelectionLength = 0;
+                
                 textBox3.AppendText(tmp);
+                textBox3.ScrollToCaret();
             }
             //自动更新IP
             if (tmp.Contains("Success"))
             {
+                //textBox3.ScrollToCaret();//自动滚屏
+                //textBox3.Focus();
+                //textBox3.SelectionStart = textBox3.Text.Length;
+                //textBox3.SelectionLength = 0;
+                //textBox3.ScrollToCaret();
                 NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
                 textBox3.AppendText("IP Refreshed.\r\n");
+                textBox3.ScrollToCaret();//自动滚屏
             }
 
         }
@@ -198,6 +206,15 @@ namespace gui
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            textBox3.ScrollToCaret();//自动滚屏到最下
+            //textBox3.Focus();
+            //textBox3.SelectionStart = textBox3.Text.Length;
+            //textBox3.SelectionLength = 0;
+            //textBox3.ScrollToCaret();
         }
     }
 }
