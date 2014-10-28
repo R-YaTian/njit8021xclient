@@ -116,7 +116,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\NXSharp.exe.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -132,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="128X128.ico" />
+    <None Include="Resources\NXSharp.exe.Config" />
     <None Include="Resources\xclient.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
