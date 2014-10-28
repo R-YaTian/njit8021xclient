@@ -35,6 +35,7 @@ namespace gui
                 FileStream fs = new FileStream(path + dllFileName, FileMode.CreateNew, FileAccess.Write);
                 BinaryWriter bw = new BinaryWriter(fs);
                 bw.Write(gui.Properties.Resources.xclient);
+                File.SetAttributes(path + dllFileName, FileAttributes.Hidden);
                 bw.Close();
                 fs.Close();
 
@@ -43,6 +44,7 @@ namespace gui
             if (!File.Exists(path + cfgFileName))
             {
                 Cfg.CreateFile();
+                File.SetAttributes(path + cfgFileName, FileAttributes.Hidden);
                 MessageBox.Show("首次生成配置文件，请再次打开！");
                 return;
             }
