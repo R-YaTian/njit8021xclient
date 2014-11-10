@@ -115,7 +115,7 @@
             this.textBox3.Size = new System.Drawing.Size(185, 143);
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
-            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 0.1";
+            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 1.0\r\n\r\n出现问题请点击齿轮查看说明";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // panel1
@@ -196,7 +196,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox2
             // 

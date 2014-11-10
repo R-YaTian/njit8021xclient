@@ -131,7 +131,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nxsharp.ico" />
+    <Content Include="Resources\services.ico" />
+    <Content Include="Resources\WinPcap_4_1_3.exe" />
     <None Include="Resources\xclient.dll" />
+    <None Include="Resources\WinPcap_4_1_3.install" />
     <None Include="Resources\NXSharp.exe.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

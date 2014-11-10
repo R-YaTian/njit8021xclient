@@ -117,6 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>njit8021xclient-sharp  ver: 1.0
+兼容iNode CH V5.20-0407
+
+注意：
+本工具依赖微软 .NET framework3.5 运行库，请从微软官方网站下载安装。
+本工具依赖 winpcap 库，请从winpcap官方网站下载安装。
+本工具在njit8021xclient项目基础上开发，遵循GPLv3协议开源，代码托管于github。
+
+疑难问题：
+1.无法运行？
+请确认已安装 .net framework 3.5
+2.提示系统找不到指定的设备？
+请确认已安装winpcap。点击下方按钮“安装Pcap”可以自动释放一个winpcap安装包。
+3.登录停留在“Client：Start”？
+请确认网线连接正确，网卡选择正确。
+4.“Client：Start”重复出现？
+请重启电脑
+5.登陆成功，但没有获取IP地址？
+请点击“手动刷新IP地址”
+6.登陆成功，获取IP正确，但没有连接？
+重启电脑，或手动禁用网卡后启用之。
+7.360提示程序可疑？
+卸了360</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

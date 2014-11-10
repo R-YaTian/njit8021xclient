@@ -33,12 +33,13 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(190, 169);
+            this.button3.Location = new System.Drawing.Point(106, 250);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 23);
             this.button3.TabIndex = 0;
@@ -49,7 +50,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(190, 227);
+            this.button2.Location = new System.Drawing.Point(212, 250);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 1;
@@ -59,7 +60,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(190, 198);
+            this.button1.Location = new System.Drawing.Point(212, 221);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 2;
@@ -73,18 +74,28 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(278, 151);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(300, 174);
             this.textBox1.TabIndex = 1;
             this.textBox1.TabStop = false;
-            this.textBox1.Text = "njit8021xclient-sharp  ver:0.1\r\n兼容iNode CH V5.20-0407\r\n\r\n本工具依赖微软 .NET framework3." +
-    "5 运行库，请从微软官方网站下载安装。\r\n本工具依赖 winpcap 库，请从winpcap官方网站下载安装。\r\n本工具在njit8021xclient项目基础" +
-    "上开发，遵循GPLv3协议开源，代码托管于github。";
+            this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(212, 192);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "安装&Pcap";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 262);
+            this.ClientSize = new System.Drawing.Size(324, 279);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
@@ -106,6 +117,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button4;
 
     }
 }

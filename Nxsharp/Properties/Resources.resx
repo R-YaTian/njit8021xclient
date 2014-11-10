@@ -121,6 +121,9 @@
   <data name="NXSharp_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NXSharp.exe.Config;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="WinPcap_4_1_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WinPcap_4_1_3.exe;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="xclient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\xclient.dll;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

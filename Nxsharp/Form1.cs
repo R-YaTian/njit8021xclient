@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using global::System.Windows.Forms;
 using System.Threading;
 using System.IO;
+using Microsoft.Win32;
 //using System.Windows.Forms.Layout;
 
 namespace gui
@@ -46,6 +47,7 @@ namespace gui
             }
             //this.comboBox1.Text = "1";
             //this.comboBox1.Items = NetworkInterfaceAvaliable.adapters_avaliable.Description;
+            SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(OnPowerModeChanged);
             
         }
         System.Timers.Timer t = new System.Timers.Timer(50); //此为日志框的刷新计时器
@@ -64,8 +66,7 @@ namespace gui
             //}
             //NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
             Form2 f2 = new Form2();
-            f2.ShowDialog();
-            
+            f2.ShowDialog();            
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -143,7 +144,7 @@ namespace gui
             RefComm.stop_auth_thread();
             panel1.Enabled = true;
             button1.Enabled = true;
-            button2.Enabled = true;
+            button2.Enabled = false;
             textBox3.AppendText("\r\n已登出");
             t.Enabled = false;
         }
@@ -198,11 +199,6 @@ namespace gui
             }
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            Cfg.device = comboBox1.Text;
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -215,6 +211,25 @@ namespace gui
             //textBox3.SelectionStart = textBox3.Text.Length;
             //textBox3.SelectionLength = 0;
             //textBox3.ScrollToCaret();
+        }
+        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            if (button1.Enabled == false && button2.Enabled == true) //判断是否点击登录
+            {
+                switch (e.Mode)
+                {
+                    //系统挂起
+                    case PowerModes.Suspend:
+                        RefComm.stop_auth_thread();
+                        textBox3.AppendText("\r\n已登出");
+                        break;
+                    //系统恢复
+                    case PowerModes.Resume:
+                        RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
+                        break;
+                }
+            }
+
         }
     }
 }

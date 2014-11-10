@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Resources;
 using System.Threading;
 
 namespace gui
@@ -51,6 +53,19 @@ namespace gui
         private void button3_Click(object sender, EventArgs e)
         {
             //TODO 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "/";
+            string pcapFileName = "WinPcap_4_1_3.exe";
+            FileStream fs = new FileStream(path + pcapFileName, FileMode.OpenOrCreate, FileAccess.Write);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(gui.Properties.Resources.WinPcap_4_1_3);
+            bw.Close();
+            fs.Close();
+            MessageBox.Show("WinPcap安装文件已生成，请手动安装WinPcap后重启本程序！");
+            return;
         }
     }
 }
