@@ -28,7 +28,7 @@ DWORD WINAPI auth_thread_func();
 static 	char sUserName[100];
 static 	char sPassword[100];
 static 	char sDeviceName[100];
-static HANDLE authThread;
+static HANDLE authThread = NULL;
 extern int stop_flag = 1;
 extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName);
 extern _declspec(dllexport) void stop_auth_thread();
@@ -54,6 +54,10 @@ void start_auth_thread(const char *UserName, const char *Password, const char *D
 }
 void stop_auth_thread()
 {
+	if (authThread == NULL)
+	{
+		return;
+	}
 	stop_flag = 1;
 	if (WaitForSingleObject(authThread, 5000) != WAIT_OBJECT_0) //等待进程自然退出
 	{
@@ -61,6 +65,7 @@ void stop_auth_thread()
 		printf("手动关闭进程！");
 	}
 	CloseHandle(authThread);//销毁句柄
+	authThread = NULL;
 	printf("\nstoped!\n");
 	return;
 }

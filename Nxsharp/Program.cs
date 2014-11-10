@@ -65,9 +65,12 @@ namespace gui
         public static bool auto = false;
         public static void Load()
         {
+            //加载配置文件
             try
             {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+                map.ExeConfigFilename = Application.StartupPath + "/NXSharp.exe.Config";
+                Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map,ConfigurationUserLevel.None);
                 AppSettingsSection app = config.AppSettings;
                 Cfg.username = app.Settings["username"].Value;
                 Cfg.password = app.Settings["password"].Value;
@@ -93,7 +96,10 @@ namespace gui
         }
         public static void Commit()
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //提交配置文件修改
+            ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+            map.ExeConfigFilename = Application.StartupPath + "/NXSharp.exe.Config";
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
             AppSettingsSection app = config.AppSettings;
             app.Settings["username"].Value = username;
             app.Settings["password"].Value = password;
