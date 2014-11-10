@@ -4,4 +4,6 @@
 /Debug
 WpdPack/
 *.ipch
+*.dll
+*.exe
 Nxsharp/obj/
