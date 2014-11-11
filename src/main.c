@@ -54,15 +54,17 @@ void start_auth_thread(const char *UserName, const char *Password, const char *D
 }
 void stop_auth_thread()
 {
+	printf("stop it!");
 	if (authThread == NULL)
 	{
+		printf("authThread == NULL");
 		return;
 	}
 	stop_flag = 1;
-	if (WaitForSingleObject(authThread, 5000) != WAIT_OBJECT_0) //等待进程自然退出
+	if (WaitForSingleObject(authThread, 10000) != WAIT_OBJECT_0) //等待进程自然退出
 	{
-		ExitThread(authThread);//超时后手动退出进程
-		printf("手动关闭进程！");
+		//ExitThread(authThread);//超时后手动退出进程
+		printf("进程退出失败\n");
 	}
 	CloseHandle(authThread);//销毁句柄
 	authThread = NULL;
