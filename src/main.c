@@ -78,13 +78,12 @@ char *read_log()
 	if (log_is_readed == 0)
 	{
 		memset(outputbuffer, 0, 500);
-		strcat(outputbuffer, logbuffer[0]);
-		for (int i = 1; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (strlen(logbuffer[i]) > 0)
-			{
-				strcat(outputbuffer, "\r\n");
+			{	
 				strcat(outputbuffer, logbuffer[i]);
+				strcat(outputbuffer, "\r\n");
 			}
 		}
 		memset(logbuffer, 0, 500);

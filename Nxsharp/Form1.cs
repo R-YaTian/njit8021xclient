@@ -96,7 +96,7 @@ namespace gui
                 Cfg.auto = false;
                 Cfg.Commit();
             }
-            RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
+            RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device]);
             //textBox1.Enabled = false;
             //textBox2.Enabled = false;
             //checkBox1.Enabled = false;
@@ -110,11 +110,6 @@ namespace gui
             t.Enabled = true;
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            this.Height = 175;
-            panel2.Visible = false;
-        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
