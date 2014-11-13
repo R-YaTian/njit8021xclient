@@ -85,16 +85,6 @@ namespace gui.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] WinPcap_4_1_3 {
-            get {
-                object obj = ResourceManager.GetObject("WinPcap_4_1_3", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
         public static byte[] xclient {
             get {
                 object obj = ResourceManager.GetObject("xclient", resourceCulture);

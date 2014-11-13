@@ -130,7 +130,7 @@
 1.无法运行？
 请确认已安装 .net framework 3.5
 2.提示系统找不到指定的设备？
-请确认已安装winpcap。点击下方按钮“安装Pcap”可以自动释放一个winpcap安装包。
+请确认已安装winpcap。
 3.登录停留在“Client：Start”？
 请确认网线连接正确，网卡选择正确。
 4.“Client：Start”重复出现？

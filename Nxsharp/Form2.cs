@@ -55,17 +55,5 @@ namespace gui
             //TODO 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string path = Application.StartupPath + "/";
-            string pcapFileName = "WinPcap_4_1_3.exe";
-            FileStream fs = new FileStream(path + pcapFileName, FileMode.OpenOrCreate, FileAccess.Write);
-            BinaryWriter bw = new BinaryWriter(fs);
-            bw.Write(gui.Properties.Resources.WinPcap_4_1_3);
-            bw.Close();
-            fs.Close();
-            MessageBox.Show("WinPcap安装文件已生成，请手动安装WinPcap后重启本程序！");
-            return;
-        }
     }
 }
