@@ -33,6 +33,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button3
@@ -45,7 +46,6 @@
             this.button3.Text = "调试模式&D";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -79,11 +79,23 @@
             this.textBox1.TabStop = false;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 192);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(90, 16);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "止痛药模式&P";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkBox1_MouseClick);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 279);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
@@ -105,6 +117,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
 
     }
 }

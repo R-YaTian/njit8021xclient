@@ -17,6 +17,10 @@ namespace gui
         public Form2()
         {
             InitializeComponent();
+            if (Cfg.mode == 1)
+            {
+                checkBox1.Checked = true;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -50,10 +54,22 @@ namespace gui
             System.Environment.Exit(0);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void checkBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            //TODO 
+            MessageBox.Show("止痛药模式：除非实在不能上网千万不要开启，会每7分钟断线一次，并有很大被查水表风险！使用时请将网卡改为固定IP。", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (this.checkBox1.Checked)
+            {
+                Cfg.mode = 1;
+            }
+            else
+            {
+                Cfg.mode = 0;
+            }
         }
+
+
+
+
 
     }
 }

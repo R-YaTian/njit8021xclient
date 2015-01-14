@@ -96,7 +96,7 @@ namespace gui
                 Cfg.auto = false;
                 Cfg.Commit();
             }
-            RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device]);
+            RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device],Cfg.mode);
             //textBox1.Enabled = false;
             //textBox2.Enabled = false;
             //checkBox1.Enabled = false;
@@ -194,10 +194,7 @@ namespace gui
             }
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void Form1_Activated(object sender, EventArgs e)
         {
@@ -220,10 +217,15 @@ namespace gui
                         break;
                     //系统恢复
                     case PowerModes.Resume:
-                        RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
+                        RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text],Cfg.mode);
                         break;
                 }
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

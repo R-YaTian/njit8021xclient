@@ -63,6 +63,7 @@ namespace gui
         public static string device;
         public static bool store = false;
         public static bool auto = false;
+        public static int mode = 0;
         public static void Load()
         {
             //加载配置文件
@@ -77,6 +78,7 @@ namespace gui
                 Cfg.device = app.Settings["device"].Value;
                 Cfg.store = Convert.ToBoolean(app.Settings["store"].Value);
                 Cfg.auto = Convert.ToBoolean(app.Settings["auto"].Value);
+                Cfg.mode = Convert.ToInt32(app.Settings["mode"].Value);
                 return;
             }
             catch (Exception)
@@ -106,6 +108,7 @@ namespace gui
             app.Settings["device"].Value = device;
             app.Settings["store"].Value = store.ToString();
             app.Settings["auto"].Value = auto.ToString();
+            app.Settings["mode"].Value = mode.ToString();
             config.Save();
             return;
         }
@@ -156,7 +159,7 @@ namespace gui
     public class RefComm
     {
         [DllImport("xclient.dll", EntryPoint = "start_auth_thread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        public static extern void start_auth_thread(string username, string password, string device);
+        public static extern void start_auth_thread(string username, string password, string device,int mode_config);
         [DllImport("xclient.dll", EntryPoint = "stop_auth_thread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         public static extern void stop_auth_thread();
         [DllImport("xclient.dll", EntryPoint = "exit_dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]

@@ -23,6 +23,9 @@ static int log_is_readed = 1;
 extern _declspec(dllexport) char *read_log();
 void write_log(char *info);
 
+//mode switch
+extern int mode = 0; // 0:normal 1:painkiller 
+
 //auth thread work
 DWORD WINAPI auth_thread_func();
 static 	char sUserName[100];
@@ -42,9 +45,17 @@ DWORD WINAPI auth_thread_func()
 	Authentication(sUserName, sPassword, sDeviceName);
 	return 0;
 }
-void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName)
+void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName,int mode_config)
 {
 	stop_flag = 0;
+	if (mode_config == 1)
+	{
+		mode = 1;//painkiller mode
+	}
+	else
+	{
+		mode = 0;//normal mode
+	}
 	strcpy(sUserName, UserName);
 	strcpy(sPassword, Password);
 	strcpy(sDeviceName, DeviceName);

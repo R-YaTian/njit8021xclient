@@ -103,8 +103,8 @@
             this.textBox3.Size = new System.Drawing.Size(192, 143);
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
-            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 1.3_beta\r\n\r\n首次使用请安装Winpcap！";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 1.3 - painkiller\r\n\r\n首次使用请安装Winpcap！\r\n\r\n遇到登录问题可以在“高级”窗" +
+    "口中切换其他登录模式";
             // 
             // panel1
             // 
@@ -222,6 +222,7 @@
             this.Text = "NX#";
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
