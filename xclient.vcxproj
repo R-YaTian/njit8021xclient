@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="h3c_AES_MD5.c" />
     <ClCompile Include="src\auth.c" />
     <ClCompile Include="src\ip.c" />
     <ClCompile Include="src\main.c" />
@@ -54,14 +55,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\njit8021xclient\src;$(SolutionDir)\WpdPack\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\WpdPack\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\OpenSSL-Win32\include;$(SolutionDir)\njit8021xclient\src;$(SolutionDir)\WpdPack\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenSSL-Win32\lib\VC\static;$(SolutionDir)\WpdPack\Lib;$(LibraryPath)</LibraryPath>
     <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\WpdPack\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\WpdPack\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\OpenSSL-Win32\include;$(ProjectDir)\WpdPack\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\OpenSSL-Win32\lib\VC\static;$(ProjectDir)\WpdPack\Lib;$(LibraryPath)</LibraryPath>
     <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -75,6 +76,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libeay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -92,6 +94,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libeay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
