@@ -203,6 +203,7 @@ FakesAssemblies/
 /xclient.sdf
 /xclient.v11.suo
 /Debug
+OpenSSL-Win32/
 WpdPack/
 *.dll
 *.exe
