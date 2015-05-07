@@ -23,16 +23,6 @@ namespace gui
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (NetworkInterfaceAvaliable.adapters_dict.ContainsKey(Cfg.device))
@@ -52,6 +42,11 @@ namespace gui
             Cfg.CreateFile();
             MessageBox.Show("请重新打开程序！");
             System.Environment.Exit(0);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Cfg.mode = 1;
         }
     }
 }

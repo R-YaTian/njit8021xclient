@@ -137,8 +137,8 @@
   <ItemGroup>
     <Content Include="nxsharp.ico" />
     <Content Include="Resources\services.ico" />
-    <None Include="Resources\NXSharp.exe.config" />
     <None Include="Resources\xclient.dll" />
+    <None Include="Resources\NXSharp.exe.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
