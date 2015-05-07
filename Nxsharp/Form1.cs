@@ -20,7 +20,6 @@ namespace gui
         StringBuilder outSb = new StringBuilder();
         public Form1()
         {
-            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             this.textBox1.Text = Cfg.username;
             this.textBox2.Text = Cfg.password;
@@ -53,18 +52,6 @@ namespace gui
         System.Timers.Timer t = new System.Timers.Timer(50); //此为日志框的刷新计时器
         private void button3_Click(object sender, EventArgs e)
         {
-            //if(this.Height == 375)
-            //{
-            //    panel1.Visible = false;
-            //    this.Height = 200;
-            //}
-            //else if(this.Height ==200)
-            //{
-            //    panel1.Visible = true;
-            //    this.Height = 375;
-
-            //}
-            //NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
             Form2 f2 = new Form2();
             f2.ShowDialog();            
         }
@@ -97,23 +84,10 @@ namespace gui
                 Cfg.Commit();
             }
             RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device],Cfg.mode);
-            //textBox1.Enabled = false;
-            //textBox2.Enabled = false;
-            //checkBox1.Enabled = false;
-            //checkBox2.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = true;
             panel1.Enabled = false;
             textBox3.Text = "";
-            t.Elapsed += new System.Timers.ElapsedEventHandler(refreshText);
-            t.AutoReset = true;
-            t.Enabled = true;
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -129,10 +103,6 @@ namespace gui
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -148,7 +118,7 @@ namespace gui
         {
             Cfg.device = comboBox1.Text;
         }
-        private void refreshText(object source, System.Timers.ElapsedEventArgs e)
+        private void refreshText()
         {
             string tmp = RefComm.read_log();
 
@@ -224,9 +194,9 @@ namespace gui
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-
+            refreshText();
         }
     }
 }

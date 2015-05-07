@@ -63,19 +63,20 @@ namespace gui.Properties {
         /// <summary>
         ///   查找类似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;configuration&gt;
+        ///  &lt;startup&gt;
+        ///    &lt;supportedRuntime version=&quot;v4.0&quot;/&gt;
+        ///    &lt;supportedRuntime version=&quot;v2.0.50727&quot;/&gt;
+        ///  &lt;/startup&gt;
         ///  &lt;appSettings&gt;
-        ///    &lt;add key=&quot;username&quot; value=&quot;username&quot; /&gt;
-        ///    &lt;add key=&quot;password&quot; value=&quot;password&quot; /&gt;
-        ///    &lt;add key=&quot;device&quot; value=&quot;device&quot; /&gt;
-        ///    &lt;add key=&quot;store&quot; value=&quot;true&quot; /&gt;
-        ///    &lt;add key=&quot;auto&quot; value=&quot;false&quot; /&gt;
-        ///    &lt;add key=&quot;mode&quot; value=&quot;0&quot; /&gt;
-        ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot; /&gt;
+        ///    &lt;add key=&quot;username&quot; value=&quot;username&quot;/&gt;
+        ///    &lt;add key=&quot;password&quot; value=&quot;password&quot;/&gt;
+        ///    &lt;add key=&quot;device&quot; value=&quot;device&quot;/&gt;
+        ///    &lt;add key=&quot;store&quot; value=&quot;true&quot;/&gt;
+        ///    &lt;add key=&quot;auto&quot; value=&quot;false&quot;/&gt;
+        ///    &lt;add key=&quot;mode&quot; value=&quot;0&quot;/&gt;
+        ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot;/&gt;
         ///  &lt;/appSettings&gt;
-        ///  &lt;system.web&gt;
-        ///    &lt;membership defaultProvider=&quot;ClientAuthenticationMembershipProvider&quot;&gt;
-        ///      &lt;providers&gt;
-        ///        [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///  &lt;system.w [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         public static string NXSharp_exe {
             get {

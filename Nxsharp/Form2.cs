@@ -53,23 +53,5 @@ namespace gui
             MessageBox.Show("请重新打开程序！");
             System.Environment.Exit(0);
         }
-
-        private void checkBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show("止痛药模式：除非实在不能上网千万不要开启，会每7分钟断线一次，并有很大被查水表风险！使用时请将网卡改为固定IP。", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            if (this.checkBox1.Checked)
-            {
-                Cfg.mode = 1;
-            }
-            else
-            {
-                Cfg.mode = 0;
-            }
-        }
-
-
-
-
-
     }
 }

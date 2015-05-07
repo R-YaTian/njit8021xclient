@@ -33,14 +33,14 @@ static 	char sPassword[100];
 static 	char sDeviceName[100];
 static HANDLE authThread = NULL;
 extern int stop_flag = 1;
-extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName);
+extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName, int mode_config);
 extern _declspec(dllexport) void stop_auth_thread();
 extern _declspec(dllexport) void exit_dll();
 //from auth.c
 extern int Authentication(const char *UserName, const char *Password, const char *DeviceName);
 
 
-DWORD WINAPI auth_thread_func()
+DWORD WINAPI auth_thread_func(PVOID pParam)
 {
 	Authentication(sUserName, sPassword, sDeviceName);
 	return 0;

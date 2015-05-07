@@ -41,6 +41,9 @@
     <ClInclude Include="src\8021xclient.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="h3c_dict.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="src\md5.h">
       <Filter>头文件</Filter>
     </ClInclude>
