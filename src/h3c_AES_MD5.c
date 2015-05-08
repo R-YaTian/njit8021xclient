@@ -5,10 +5,7 @@
 #include "aes.h"
 #include "h3c_dict.h"
 #include "md5.h"
-
-int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_data);
-int test();
-char* get_sig(unsigned long index, int offset, int length, unsigned char* dst);
+#include "h3c_AES_MD5.h"
 
 //void main()
 //{

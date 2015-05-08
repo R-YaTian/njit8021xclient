@@ -11,19 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="h3c_AES_MD5.c" />
     <ClCompile Include="src\aes.c" />
     <ClCompile Include="src\auth.c" />
+    <ClCompile Include="src\h3c_AES_MD5.c" />
     <ClCompile Include="src\ip.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\8021xclient.c" />
     <ClCompile Include="src\md5.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="h3c_dict.h" />
     <ClInclude Include="src\aes.h" />
     <ClInclude Include="src\debug.h" />
     <ClInclude Include="src\8021xclient.h" />
+    <ClInclude Include="src\h3c_AES_MD5.h" />
+    <ClInclude Include="src\h3c_dict.h" />
     <ClInclude Include="src\md5.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
