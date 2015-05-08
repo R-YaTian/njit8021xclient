@@ -4,6 +4,10 @@
 screenshot
 ---
 ![screenshot](./screenshot.png)
+
+release
+---
+最新版本Nxsharp下载地址：http://dl.vmall.com/c0x4pz95si#
 fork from
 ---
 njit8021xclient: https://github.com/tengattack/8021xclient-for-windows
@@ -11,7 +15,7 @@ depends on
 ---
 WinPcap: http://www.winpcap.org/
 Please put the libary of WinPcap into WpdPack to compile and link the target.
-.Net Framework 3.5~4.5: http://www.microsoft.com/
+dotNet Framework 3.5~4.5: http://www.microsoft.com/
 
 more info
 ---
