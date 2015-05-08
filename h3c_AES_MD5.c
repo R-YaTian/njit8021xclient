@@ -1,7 +1,3 @@
-/*
-* aes.cc
-* - Show the usage of AES encryption/decryption
-*/
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,10 +10,10 @@ int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_d
 int test();
 char* get_sig(unsigned long index, int offset, int length, unsigned char* dst);
 
-void main()
-{
-	test();
-}
+//void main()
+//{
+//	test();
+//}
 
 int test() {
 	unsigned char encrypt_data[32] = { 0xcf, 0xfe, 0x64, 0x73, 0xd5, 0x73, 0x3b, 0x1f, 0x9e, 0x9a, 0xee, 0x1a, 0x6b, 0x76, 0x47, 0xc8, 0x9e, 0x27, 0xc8, 0x92, 0x25, 0x78, 0xc4, 0xc8, 0x27, 0x03, 0x34, 0x50, 0xb6, 0x10, 0xb8, 0x35 };
@@ -81,6 +77,8 @@ int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_d
 	return 0;
 }
 
+
+// 查找表函数，根据索引值、偏移量以及长度查找序列
 char* get_sig(unsigned long index, int offset, int length, unsigned char* dst)
 {
 	const unsigned char *base_address;

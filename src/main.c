@@ -16,7 +16,7 @@
 
 
 //log work
-static char logbuffer[5][100] = { "", "", "", "", "" }; //store the log
+static char logbuffer[5][100] = {"", "", "", "", ""}; //store the log
 static char outputbuffer[500] = "";
 static int writer_ptr = 0;
 static int log_is_readed = 1;

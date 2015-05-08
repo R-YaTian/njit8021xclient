@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Resources;
-using System.Threading;
 
 namespace gui
 {
@@ -27,7 +26,6 @@ namespace gui
         {
             if (NetworkInterfaceAvaliable.adapters_dict.ContainsKey(Cfg.device))
             {
-                //Thread t = new Thread(new ThreadStart(NetworkInterfaceAvaliable.RefreshDHCP));
                 NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[Cfg.device]);
             }
             else

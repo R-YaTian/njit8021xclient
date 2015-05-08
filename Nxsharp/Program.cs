@@ -21,16 +21,13 @@ namespace gui
         [STAThread]
         static void Main()
         {
-            
-            
-            //MessageBox.Show(RefComm.read_log());
             NetworkInterfaceAvaliable.List();            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //自动释放DLL
             string path = Application.StartupPath + "/";
             string dllFileName = "xclient.dll";
-            if (!File.Exists(path + dllFileName))
+            if (!File.Exists(path + "xclient.dll"))
             {
                 FileStream fs = new FileStream(path + dllFileName, FileMode.CreateNew, FileAccess.Write);
                 BinaryWriter bw = new BinaryWriter(fs);
@@ -40,11 +37,9 @@ namespace gui
                 fs.Close();
 
             }
-            string cfgFileName = "NXSharp.exe.Config";
-            if (!File.Exists(path + cfgFileName))
+            if (!File.Exists(path + "NXSharp.exe.Config"))
             {
                 Cfg.CreateFile();
-                //不能使用隐藏的配置文件
                 MessageBox.Show("首次生成配置文件，请再次打开！");
                 return;
             }
@@ -85,15 +80,7 @@ namespace gui
             {
                 //避免配置文件丢失
                 MessageBox.Show("没有找到配置文件！");
-                //Form2 f2 = new Form2();
-                //f2.ShowDialog();
                 return;
-                //CreateFile();
-                //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                //AppSettingsSection app = config.AppSettings;
-                //Cfg.username = app.Settings["username"].Value;
-                //Cfg.password = app.Settings["password"].Value;
-                //throw;
             }
         }
         public static void Commit()
