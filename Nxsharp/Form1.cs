@@ -8,10 +8,8 @@ using System.Text;
 using System.Net;
 using System.Net.NetworkInformation;
 using global::System.Windows.Forms;
-using System.Threading;
 using System.IO;
 using Microsoft.Win32;
-//using System.Windows.Forms.Layout;
 
 namespace gui
 {
@@ -20,7 +18,6 @@ namespace gui
         StringBuilder outSb = new StringBuilder();
         public Form1()
         {
-            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             this.textBox1.Text = Cfg.username;
             this.textBox2.Text = Cfg.password;
@@ -30,7 +27,6 @@ namespace gui
 
             foreach (string adapter in NetworkInterfaceAvaliable.adapters_dict.Keys)
             {
-                //this.comboBox1.Items.Add(adapter.Name + "\n" + adapter.Id + "\n" + adapter.Description);
                 this.comboBox1.Items.Add(adapter);
             }
             if (NetworkInterfaceAvaliable.adapters_dict.ContainsKey(Cfg.device))
@@ -45,36 +41,13 @@ namespace gui
             {
                 button1_Click(button1, new EventArgs());
             }
-            //this.comboBox1.Text = "1";
-            //this.comboBox1.Items = NetworkInterfaceAvaliable.adapters_avaliable.Description;
             SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(OnPowerModeChanged);
             
         }
-        System.Timers.Timer t = new System.Timers.Timer(50); //此为日志框的刷新计时器
         private void button3_Click(object sender, EventArgs e)
         {
-            //if(this.Height == 375)
-            //{
-            //    panel1.Visible = false;
-            //    this.Height = 200;
-            //}
-            //else if(this.Height ==200)
-            //{
-            //    panel1.Visible = true;
-            //    this.Height = 375;
-
-            //}
-            //NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
             Form2 f2 = new Form2();
             f2.ShowDialog();            
-        }
-
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.Show();
-            this.ShowInTaskbar = true;
-            this.WindowState = FormWindowState.Normal;
-            this.BringToFront();
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -97,23 +70,11 @@ namespace gui
                 Cfg.Commit();
             }
             RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device],Cfg.mode);
-            //textBox1.Enabled = false;
-            //textBox2.Enabled = false;
-            //checkBox1.Enabled = false;
-            //checkBox2.Enabled = false;
             button1.Enabled = false;
             button2.Enabled = true;
             panel1.Enabled = false;
             textBox3.Text = "";
-            t.Elapsed += new System.Timers.ElapsedEventHandler(refreshText);
-            t.AutoReset = true;
-            t.Enabled = true;
-        }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            timer1.Enabled = true;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -129,10 +90,6 @@ namespace gui
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -141,14 +98,14 @@ namespace gui
             button1.Enabled = true;
             button2.Enabled = false;
             textBox3.AppendText("\r\n已登出");
-            t.Enabled = false;
+            timer1.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cfg.device = comboBox1.Text;
         }
-        private void refreshText(object source, System.Timers.ElapsedEventArgs e)
+        private void refreshText()
         {
             string tmp = RefComm.read_log();
 
@@ -156,28 +113,18 @@ namespace gui
 
             if (tmp.Length != 0)
             {
-                if (textBox3.Text.Length > 32700)
+                if (textBox3.Text.Length > 1024)
                 {
                     textBox3.Text = "";
                     textBox3.ScrollToCaret();
-                    //textBox3.AppendText("");
                 }
-                textBox3.ScrollToCaret();//自动滚屏
-                //textBox3.Focus();
-                //textBox3.SelectionStart=textBox3.Text.Length;
-                //textBox3.SelectionLength = 0;
-                
+                textBox3.ScrollToCaret();//自动滚屏                
                 textBox3.AppendText(tmp);
                 textBox3.ScrollToCaret();
             }
             //自动更新IP
             if (tmp.Contains("Success"))
             {
-                //textBox3.ScrollToCaret();//自动滚屏
-                //textBox3.Focus();
-                //textBox3.SelectionStart = textBox3.Text.Length;
-                //textBox3.SelectionLength = 0;
-                //textBox3.ScrollToCaret();
                 NetworkInterfaceAvaliable.RefreshDHCP(NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text]);
                 textBox3.AppendText("IP Refreshed.\r\n");
                 textBox3.ScrollToCaret();//自动滚屏
@@ -191,6 +138,7 @@ namespace gui
             {
                 this.ShowInTaskbar = false;
                 this.Hide();
+                notifyIcon1.ShowBalloonTip(1000, "", "NXSharp正在运行！", ToolTipIcon.Warning);
             }
         }
 
@@ -199,10 +147,6 @@ namespace gui
         private void Form1_Activated(object sender, EventArgs e)
         {
             textBox3.ScrollToCaret();//自动滚屏到最下
-            //textBox3.Focus();
-            //textBox3.SelectionStart = textBox3.Text.Length;
-            //textBox3.SelectionLength = 0;
-            //textBox3.ScrollToCaret();
         }
         private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
@@ -224,9 +168,17 @@ namespace gui
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
+            refreshText();
+        }
 
+        private void notifyIcon1_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.ShowInTaskbar = true;
+            this.WindowState = FormWindowState.Normal;
+            this.BringToFront();
         }
     }
 }

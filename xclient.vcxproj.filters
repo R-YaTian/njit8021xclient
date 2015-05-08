@@ -30,6 +30,12 @@
     <ClCompile Include="src\md5.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="h3c_AES_MD5.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\aes.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debug.h">
@@ -38,7 +44,13 @@
     <ClInclude Include="src\8021xclient.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="h3c_dict.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="src\md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\aes.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
