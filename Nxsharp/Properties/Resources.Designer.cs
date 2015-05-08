@@ -73,7 +73,7 @@ namespace gui.Properties {
         ///    &lt;add key=&quot;device&quot; value=&quot;device&quot;/&gt;
         ///    &lt;add key=&quot;store&quot; value=&quot;true&quot;/&gt;
         ///    &lt;add key=&quot;auto&quot; value=&quot;false&quot;/&gt;
-        ///    &lt;add key=&quot;mode&quot; value=&quot;0&quot;/&gt;
+        ///    &lt;add key=&quot;mode&quot; value=&quot;1&quot;/&gt;
         ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot;/&gt;
         ///  &lt;/appSettings&gt;
         ///  &lt;system.w [字符串的其余部分被截断]&quot;; 的本地化字符串。

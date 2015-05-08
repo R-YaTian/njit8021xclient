@@ -37,6 +37,7 @@ int test() {
 	return 0;
 }
 
+//参考 h3c_AES_MD5.md 文档中对算法的说明
 int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_data)
 {
 	const unsigned char key[16] = { 0xEC, 0xD4, 0x4F, 0x7B, 0xC6, 0xDD, 0x7D, 0xDE, 0x2B, 0x7B, 0x51, 0xAB, 0x4A, 0x6F, 0x5A, 0x22 };        // AES_BLOCK_SIZE = 16

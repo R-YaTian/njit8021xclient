@@ -216,3 +216,4 @@ Release/NXSharp.exe
 *.dll
 *.exe
 Release/xclient.dll
+Nxsharp/Resources/NXSharp.exe.config

@@ -124,7 +124,8 @@
 注意：
 本工具依赖微软 .NET framework3.5 运行库，请从微软官方网站下载安装。
 本工具依赖 winpcap 库，请从winpcap官方网站下载安装。
-本工具在njit8021xclient项目基础上开发，遵循GPLv3协议开源，代码托管于github。
+本工具在njit8021xclient项目基础上开发，遵循GPLv3协议开源，代码托管于github:
+https://github.com/bitdust/njit8021xclient
 
 常见问题：
 1.无法运行？
