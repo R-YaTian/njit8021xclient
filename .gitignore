@@ -214,3 +214,5 @@ Release/NXSharp.exe
 *.orig
 *.cd
 *.dll
+*.exe
+Release/xclient.dll

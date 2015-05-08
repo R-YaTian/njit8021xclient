@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <openssl/aes.h>
+#include "aes.h"
 #include "h3c_dict.h"
 
 extern void MD5Calc(unsigned char *data, unsigned int len, unsigned char *output);
@@ -47,32 +47,23 @@ int test() {
 
 int h3c_AES_MD5_decryption(unsigned char *decrypt_data, const unsigned char *encrypt_data)
 {
-	const unsigned char key[AES_BLOCK_SIZE] = { 0xEC, 0xD4, 0x4F, 0x7B, 0xC6, 0xDD, 0x7D, 0xDE, 0x2B, 0x7B, 0x51, 0xAB, 0x4A, 0x6F, 0x5A, 0x22 };        // AES_BLOCK_SIZE = 16
-	unsigned char iv1[AES_BLOCK_SIZE] = { 'a', '@', '4', 'd', 'e', '%', '#', '1', 'a', 's', 'd', 'f', 's', 'd', '2', '4' };        // init vector
-	unsigned char iv2[AES_BLOCK_SIZE] = { 'a', '@', '4', 'd', 'e', '%', '#', '1', 'a', 's', 'd', 'f', 's', 'd', '2', '4' }; //每次加密、解密后，IV会被改变！因此需要两组IV完成两次“独立的”解密
-	AES_KEY aes;
+	const unsigned char key[16] = { 0xEC, 0xD4, 0x4F, 0x7B, 0xC6, 0xDD, 0x7D, 0xDE, 0x2B, 0x7B, 0x51, 0xAB, 0x4A, 0x6F, 0x5A, 0x22 };        // AES_BLOCK_SIZE = 16
+	unsigned char iv1[16] = { 'a', '@', '4', 'd', 'e', '%', '#', '1', 'a', 's', 'd', 'f', 's', 'd', '2', '4' };        // init vector
+	unsigned char iv2[16] = { 'a', '@', '4', 'd', 'e', '%', '#', '1', 'a', 's', 'd', 'f', 's', 'd', '2', '4' }; //每次加密、解密后，IV会被改变！因此需要两组IV完成两次“独立的”解密
 	unsigned int length_1;
 	unsigned int length_2;
 	unsigned char tmp0[32];
 	unsigned char sig[255];
 	unsigned char tmp2[16];
 	unsigned char tmp3[16];
-	if (AES_set_decrypt_key(key, 128, &aes) < 0) {
-		fprintf(stderr, "Unable to set decryption key in AES\n");
-		exit(-1);
-	}
 	// decrypt
-	AES_cbc_encrypt(encrypt_data, tmp0, 32, &aes, iv1, AES_DECRYPT); //使用AES_CBC解密数据
+	AES128_CBC_decrypt_buffer(tmp0, encrypt_data, 32, key, iv1);
 	memcpy(decrypt_data, tmp0, 16);
 	length_1 = *(tmp0 + 5);
 	get_sig(*(unsigned long *)tmp0, *(tmp0 + 4), length_1, sig);
 	MD5Calc(sig, length_1, tmp2);
 
-	if (AES_set_decrypt_key(tmp2, 128, &aes) < 0) {
-		fprintf(stderr, "Unable to set decryption key in AES\n");
-		exit(-1);
-	}
-	AES_cbc_encrypt(tmp0 + 16, tmp3, 16, &aes, iv2, AES_DECRYPT); //使用AES_CBC解密数据
+	AES128_CBC_decrypt_buffer(tmp3, tmp0+16, 16, tmp2, iv2);
 
 	memcpy(decrypt_data + 16, tmp3, 16);
 

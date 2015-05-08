@@ -88,6 +88,7 @@ namespace gui
             button2.Enabled = true;
             panel1.Enabled = false;
             textBox3.Text = "";
+            timer1.Enabled = true;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -111,7 +112,7 @@ namespace gui
             button1.Enabled = true;
             button2.Enabled = false;
             textBox3.AppendText("\r\n已登出");
-            t.Enabled = false;
+            timer1.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
