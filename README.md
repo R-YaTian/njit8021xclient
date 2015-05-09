@@ -7,7 +7,7 @@ screenshot
 
 release
 ---
-最新版本Nxsharp下载地址：http://dl.vmall.com/c0x4pz95si#
+最新版本Nxsharp下载地址：https://github.com/bitdust/njit8021xclient/releases/tag/ver_2.0
 fork from
 ---
 njit8021xclient: https://github.com/tengattack/8021xclient-for-windows
