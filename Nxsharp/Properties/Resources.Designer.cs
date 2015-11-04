@@ -68,15 +68,14 @@ namespace gui.Properties {
         ///    &lt;supportedRuntime version=&quot;v2.0.50727&quot;/&gt;
         ///  &lt;/startup&gt;
         ///  &lt;appSettings&gt;
-        ///    &lt;add key=&quot;username&quot; value=&quot;username&quot;/&gt;
-        ///    &lt;add key=&quot;password&quot; value=&quot;password&quot;/&gt;
-        ///    &lt;add key=&quot;device&quot; value=&quot;device&quot;/&gt;
-        ///    &lt;add key=&quot;store&quot; value=&quot;true&quot;/&gt;
-        ///    &lt;add key=&quot;auto&quot; value=&quot;false&quot;/&gt;
-        ///    &lt;add key=&quot;mode&quot; value=&quot;1&quot;/&gt;
-        ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot;/&gt;
-        ///  &lt;/appSettings&gt;
-        ///  &lt;system.w [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///    &lt;add key=&quot;username&quot; value=&quot;username&quot; /&gt;
+        ///    &lt;add key=&quot;password&quot; value=&quot;password&quot; /&gt;
+        ///    &lt;add key=&quot;device&quot; value=&quot;Intel(R) 以太网连接 I217-V&quot; /&gt;
+        ///    &lt;add key=&quot;store&quot; value=&quot;True&quot; /&gt;
+        ///    &lt;add key=&quot;auto&quot; value=&quot;False&quot; /&gt;
+        ///    &lt;add key=&quot;mode&quot; value=&quot;1&quot; /&gt;
+        ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot; /&gt;
+        ///  &lt;/app [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         public static string NXSharp_exe {
             get {

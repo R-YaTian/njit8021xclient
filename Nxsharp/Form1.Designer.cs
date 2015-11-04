@@ -104,7 +104,7 @@
             this.textBox3.Size = new System.Drawing.Size(192, 143);
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
-            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 2.0 - reload\r\n\r\n首次使用请安装Winpcap！";
+            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 2.2 - dev2 for 工院\r\n\r\n首次使用请安装Winpcap！";
             // 
             // panel1
             // 
