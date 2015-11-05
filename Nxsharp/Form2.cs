@@ -37,5 +37,10 @@ namespace gui
         {
             Cfg.mode = 1;
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("iexplore.exe", "https://github.com/bitdust/njit8021xclient/releases");
+        }
     }
 }
