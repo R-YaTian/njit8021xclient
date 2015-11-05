@@ -1,50 +1,42 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "pcaphelper.h"
-
-#ifndef WIN32
-#include <sys/socket.h>
-#include <netinet/in.h>
-#else
 #include <winsock2.h>
 #include <windows.h>
 #include <process.h>
 #pragma comment(lib, "ws2_32.lib")
-#endif
 
-
-
-//log work
-static char logbuffer[5][100] = {"", "", "", "", ""}; //store the log
-static char outputbuffer[500] = "";
+//log
+static char logbuffer[5][260] = {"", "", "", "", ""}; //store the log
+static char outputbuffer[1300] = "";
 static int writer_ptr = 0;
 static int log_is_readed = 1;
-extern _declspec(dllexport) char *read_log();
-void write_log(char *info);
+extern _declspec(dllexport) char *ReadLog();
+void WriteLog(char *info);
 
 //mode switch
 extern int mode = 0; // 0:normal 1:painkiller 
 
-//auth thread work
+//auth thread
 DWORD WINAPI auth_thread_func();
 static 	char sUserName[100];
 static 	char sPassword[100];
 static 	char sDeviceName[100];
 static HANDLE authThread = NULL;
 extern int stop_flag = 1;
-extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName, int mode_config);
-extern _declspec(dllexport) void stop_auth_thread();
+extern _declspec(dllexport) void StartAuthThread(const char *UserName, const char *Password, const char *DeviceName, int mode_config);
+extern _declspec(dllexport) void StopAuthThread();
+
 //from auth.c
 extern int Authentication(const char *UserName, const char *Password, const char *DeviceName);
-
 
 DWORD WINAPI auth_thread_func(PVOID pParam)
 {
 	Authentication(sUserName, sPassword, sDeviceName);
 	return 0;
 }
-void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName,int mode_config)
+
+void StartAuthThread(const char *UserName, const char *Password, const char *DeviceName, int mode_config)
 {
 	stop_flag = 0;
 	if (mode_config == 1)
@@ -62,7 +54,8 @@ void start_auth_thread(const char *UserName, const char *Password, const char *D
 	authThread = CreateThread(NULL, 0, auth_thread_func, NULL, 0, NULL);
 	return;
 }
-void stop_auth_thread()
+
+void StopAuthThread()
 {
 	printf("stop it!");
 	if (authThread == NULL)
@@ -82,12 +75,12 @@ void stop_auth_thread()
 	return;
 }
 
-char *read_log()
+char *ReadLog()
 {
 	//循环读取缓存的消息
 	if (log_is_readed == 0)
 	{
-		memset(outputbuffer, 0, 500);
+		memset(outputbuffer, 0, sizeof(outputbuffer));
 		for (int i = 0; i < 5; i++)
 		{
 			if (strlen(logbuffer[i]) > 0)
@@ -96,7 +89,7 @@ char *read_log()
 				strcat(outputbuffer, "\r\n");
 			}
 		}
-		memset(logbuffer, 0, 500);
+		memset(logbuffer, 0, sizeof(outputbuffer));
 		log_is_readed = 1;
 		return outputbuffer;
 	}
@@ -106,7 +99,8 @@ char *read_log()
 	}
 
 }
-void write_log(char* info)
+
+void WriteLog(char* info)
 {
 	//循环写入缓存的消息
 	if (strlen(info) < 99)

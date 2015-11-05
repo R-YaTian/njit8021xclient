@@ -270,8 +270,7 @@ void MD5Calc(unsigned char *data, unsigned int len, unsigned char *output)
     
 	MD5Init(&context);
 	MD5Update(&context, (unsigned char *)data, len);
-	MD5Final(&digest, &context);
-    
+	MD5Final(&digest, &context);  
 	memcpy(output, digest.a, 16);
 }
 

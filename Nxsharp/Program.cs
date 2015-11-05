@@ -26,7 +26,7 @@ namespace gui
             Application.SetCompatibleTextRenderingDefault(false);
             Cfg.Load();
             Application.Run(new Form1());
-            RefComm.stop_auth_thread();
+            RefComm.StopAuthThread();
             return;
         }
         
@@ -113,15 +113,15 @@ namespace gui
 
     public class RefComm
     {
-        [DllImport("xclient.dll", EntryPoint = "start_auth_thread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        public static extern void start_auth_thread(string username, string password, string device,int mode_config);
-        [DllImport("xclient.dll", EntryPoint = "stop_auth_thread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        public static extern void stop_auth_thread();
-        [DllImport("xclient.dll", EntryPoint = "read_log", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        private static extern IntPtr get_log_buffer();
-        public static string read_log()
+        [DllImport("xclient.dll", EntryPoint = "StartAuthThread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern void StartAuthThread(string username, string password, string device, int mode_config);
+        [DllImport("xclient.dll", EntryPoint = "StopAuthThread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        public static extern void StopAuthThread();
+        [DllImport("xclient.dll", EntryPoint = "ReadLog", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
+        private static extern IntPtr GetLogBuffer();
+        public static string ReadLog()
         {
-            return Marshal.PtrToStringAnsi(get_log_buffer());
+            return Marshal.PtrToStringAnsi(GetLogBuffer());
         }
 
     }

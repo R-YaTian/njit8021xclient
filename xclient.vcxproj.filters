@@ -24,9 +24,6 @@
     <ClCompile Include="src\main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\8021xclient.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\h3c_AES_MD5\h3c_AES_MD5.c">
       <Filter>源文件</Filter>
     </ClCompile>

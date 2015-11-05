@@ -69,7 +69,7 @@ namespace gui
                 Cfg.auto = false;
                 Cfg.Commit();
             }
-            RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device],Cfg.mode);
+            RefComm.StartAuthThread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[Cfg.device],Cfg.mode);
             button1.Enabled = false;
             button2.Enabled = true;
             panel1.Enabled = false;
@@ -93,7 +93,7 @@ namespace gui
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RefComm.stop_auth_thread();
+            RefComm.StopAuthThread();
             panel1.Enabled = true;
             button1.Enabled = true;
             button2.Enabled = false;
@@ -107,7 +107,7 @@ namespace gui
         }
         private void refreshText()
         {
-            string tmp = RefComm.read_log();
+            string tmp = RefComm.ReadLog();
 
 
 
@@ -156,12 +156,12 @@ namespace gui
                 {
                     //系统挂起
                     case PowerModes.Suspend:
-                        RefComm.stop_auth_thread();
+                        RefComm.StopAuthThread();
                         textBox3.AppendText("\r\n已登出");
                         break;
                     //系统恢复
                     case PowerModes.Resume:
-                        RefComm.start_auth_thread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text],Cfg.mode);
+                        RefComm.StartAuthThread(Cfg.username, Cfg.password, "\\Device\\NPF_" + NetworkInterfaceAvaliable.adapters_dict[comboBox1.Text], Cfg.mode);
                         break;
                 }
             }
