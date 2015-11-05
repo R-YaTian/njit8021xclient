@@ -35,7 +35,6 @@ static HANDLE authThread = NULL;
 extern int stop_flag = 1;
 extern _declspec(dllexport) void start_auth_thread(const char *UserName, const char *Password, const char *DeviceName, int mode_config);
 extern _declspec(dllexport) void stop_auth_thread();
-extern _declspec(dllexport) void exit_dll();
 //from auth.c
 extern int Authentication(const char *UserName, const char *Password, const char *DeviceName);
 
@@ -50,7 +49,7 @@ void start_auth_thread(const char *UserName, const char *Password, const char *D
 	stop_flag = 0;
 	if (mode_config == 1)
 	{
-		mode = 1;//painkiller mode
+		mode = 1;//painkiller mode 即断线自动重连
 	}
 	else
 	{
@@ -120,9 +119,4 @@ void write_log(char* info)
 	}
 	log_is_readed = 0;
 	return;
-}
-
-void exit_dll()
-{
-	exit(0);
 }

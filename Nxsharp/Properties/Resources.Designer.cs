@@ -59,38 +59,5 @@ namespace gui.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   查找类似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;configuration&gt;
-        ///  &lt;startup&gt;
-        ///    &lt;supportedRuntime version=&quot;v4.0&quot;/&gt;
-        ///    &lt;supportedRuntime version=&quot;v2.0.50727&quot;/&gt;
-        ///  &lt;/startup&gt;
-        ///  &lt;appSettings&gt;
-        ///    &lt;add key=&quot;username&quot; value=&quot;username&quot; /&gt;
-        ///    &lt;add key=&quot;password&quot; value=&quot;password&quot; /&gt;
-        ///    &lt;add key=&quot;device&quot; value=&quot;Intel(R) 以太网连接 I217-V&quot; /&gt;
-        ///    &lt;add key=&quot;store&quot; value=&quot;True&quot; /&gt;
-        ///    &lt;add key=&quot;auto&quot; value=&quot;False&quot; /&gt;
-        ///    &lt;add key=&quot;mode&quot; value=&quot;1&quot; /&gt;
-        ///    &lt;add key=&quot;ClientSettingsProvider.ServiceUri&quot; value=&quot;&quot; /&gt;
-        ///  &lt;/app [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        /// </summary>
-        public static string NXSharp_exe {
-            get {
-                return ResourceManager.GetString("NXSharp_exe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] xclient {
-            get {
-                object obj = ResourceManager.GetObject("xclient", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

@@ -2,11 +2,20 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "md5/md5.h"
 #include "aes.h"
 #include "h3c_dict.h"
-#include "md5.h"
 #include "h3c_AES_MD5.h"
 
+/* 大小端问题 */
+//大小端检测，如果 ENDIANNESS=='l' 则为小端
+static union { char c[4]; unsigned long mylong; } endian_test = { { 'l', '?', '?', 'b' } };
+#define ENDIANNESS ((char)endian_test.mylong)
+//大小端转换
+#define BigLittleSwap32(A) ((((uint32_t)(A)&0xff000000)>>24)|\
+	(((uint32_t)(A)&0x00ff0000)>>8)|\
+	(((uint32_t)(A)&0x0000ff00)<<8)|\
+	(((uint32_t)(A)&0x000000ff)<<24))
 //void main()
 //{
 //	test();
@@ -53,15 +62,15 @@ int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_d
 	AES128_CBC_decrypt_buffer(tmp0, encrypt_data, 32, key, iv1);
 	memcpy(decrypt_data, tmp0, 16);
 	length_1 = *(tmp0 + 5);
-	get_sig(*(unsigned long *)tmp0, *(tmp0 + 4), length_1, sig);
+	get_sig(*(uint32_t *)tmp0, *(tmp0 + 4), length_1, sig);
 	MD5Calc(sig, length_1, tmp2);
 
-	AES128_CBC_decrypt_buffer(tmp3, tmp0+16, 16, tmp2, iv2);
+	AES128_CBC_decrypt_buffer(tmp3, tmp0 + 16, 16, tmp2, iv2);
 
 	memcpy(decrypt_data + 16, tmp3, 16);
 
 	length_2 = *(tmp3 + 15);
-	get_sig(*(unsigned long *)(tmp3 + 10), *(tmp3 + 14), length_2, sig + length_1);
+	get_sig(*(uint32_t *)(tmp3 + 10), *(tmp3 + 14), length_2, sig + length_1);
 	if (length_1 + length_2>32)
 	{
 		memcpy(decrypt_data, sig, 32);
@@ -77,10 +86,21 @@ int h3c_AES_MD5_decryption(unsigned char *decrypt_data, unsigned char *encrypt_d
 
 
 // 查找表函数，根据索引值、偏移量以及长度查找序列
-char* get_sig(unsigned long index, int offset, int length, unsigned char* dst)
+char* get_sig(uint32_t index, int offset, int length, unsigned char* dst)
 {
+	uint32_t index_tmp;
 	const unsigned char *base_address;
-	switch (index)
+	// printf("index = %x\n" ,index);
+
+	if (ENDIANNESS == 'l')
+	{
+		index_tmp = index; // 小端情况，如PC架构
+	}
+	else
+	{
+		index_tmp = BigLittleSwap32(index); // 大端序，如MIPS架构
+	}
+	switch (index_tmp) // this line works in mips.
 	{
 	case 0xa31acc57:base_address = x57cc1aa3; break;
 	case 0xa9c5ca51:base_address = x51cac5a9; break;
@@ -123,7 +143,9 @@ char* get_sig(unsigned long index, int offset, int length, unsigned char* dst)
 	case 0x74a9e0f7:base_address = xf7e0a974; break;
 	case 0x4f55d026:base_address = x26d0554f; break;
 	default:
-		printf("lookup dict failed.\n"); return 0; break;
+		printf("lookup dict failed.\n"); // 查表失败
+		base_address = x26d0554f;
+		break;
 	}
 	memcpy(dst, base_address + offset, length);
 	return dst;

@@ -21,7 +21,6 @@ namespace gui
                 checkBox1.Checked = true;
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (NetworkInterfaceAvaliable.adapters_dict.ContainsKey(Cfg.device))
@@ -34,14 +33,6 @@ namespace gui
                 this.Close();
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Cfg.CreateFile();
-            MessageBox.Show("请重新打开程序！");
-            System.Environment.Exit(0);
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             Cfg.mode = 1;

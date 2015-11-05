@@ -27,13 +27,13 @@
     <ClCompile Include="src\8021xclient.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\md5.c">
+    <ClCompile Include="src\h3c_AES_MD5\h3c_AES_MD5.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\aes.c">
+    <ClCompile Include="src\md5\md5.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\h3c_AES_MD5.c">
+    <ClCompile Include="src\h3c_AES_MD5\aes.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,16 +44,10 @@
     <ClInclude Include="src\8021xclient.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\md5.h">
+    <ClInclude Include="src\md5\md5.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\aes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\h3c_dict.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\h3c_AES_MD5.h">
+    <ClInclude Include="src\h3c_AES_MD5\h3c_AES_MD5.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

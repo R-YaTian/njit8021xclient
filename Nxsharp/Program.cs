@@ -24,29 +24,9 @@ namespace gui
             NetworkInterfaceAvaliable.List();            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //自动释放DLL
-            string path = Application.StartupPath + "/";
-            string dllFileName = "xclient.dll";
-            if (!File.Exists(path + "xclient.dll"))
-            {
-                FileStream fs = new FileStream(path + dllFileName, FileMode.CreateNew, FileAccess.Write);
-                BinaryWriter bw = new BinaryWriter(fs);
-                bw.Write(gui.Properties.Resources.xclient);
-                File.SetAttributes(path + dllFileName, FileAttributes.Hidden);
-                bw.Close();
-                fs.Close();
-
-            }
-            if (!File.Exists(path + "NXSharp.exe.Config"))
-            {
-                Cfg.CreateFile();
-                MessageBox.Show("首次生成配置文件，请再次打开！");
-                return;
-            }
             Cfg.Load();
             Application.Run(new Form1());
             RefComm.stop_auth_thread();
-            RefComm.exit_dll();
             return;
         }
         
@@ -98,19 +78,7 @@ namespace gui
             app.Settings["mode"].Value = mode.ToString();
             config.Save();
             return;
-        }
-        public static void CreateFile()
-        {
-            string path = Application.StartupPath + "/";
-            string cfgFileName = "NXSharp.exe.Config";
-            FileStream fs = new FileStream(path + cfgFileName, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.Write(gui.Properties.Resources.NXSharp_exe);
-            sw.Close();
-            fs.Close();
-            return;
-        }
-        
+        }        
     }
     public class NetworkInterfaceAvaliable
     {
@@ -149,8 +117,6 @@ namespace gui
         public static extern void start_auth_thread(string username, string password, string device,int mode_config);
         [DllImport("xclient.dll", EntryPoint = "stop_auth_thread", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         public static extern void stop_auth_thread();
-        [DllImport("xclient.dll", EntryPoint = "exit_dll", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
-        public static extern void exit_dll();//增加退出DLL方法
         [DllImport("xclient.dll", EntryPoint = "read_log", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         private static extern IntPtr get_log_buffer();
         public static string read_log()
