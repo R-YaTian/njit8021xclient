@@ -65,7 +65,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(128, 125);
+            this.button2.Location = new System.Drawing.Point(129, 125);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(74, 25);
@@ -96,7 +96,7 @@
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBox3.ForeColor = System.Drawing.Color.Lime;
-            this.textBox3.Location = new System.Drawing.Point(10, 167);
+            this.textBox3.Location = new System.Drawing.Point(11, 168);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -104,7 +104,7 @@
             this.textBox3.Size = new System.Drawing.Size(192, 143);
             this.textBox3.TabIndex = 16;
             this.textBox3.TabStop = false;
-            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 2.2 - dev4\r\n此版本仅供测试！\r\n\r\n首次使用请安装Winpcap";
+            this.textBox3.Text = "njit8021xclient-sharp\r\nver: 2.2 - dev6\r\n此版本仅供测试！\r\n\r\n首次使用请安装Winpcap";
             // 
             // panel1
             // 
