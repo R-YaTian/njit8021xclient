@@ -1,4 +1,4 @@
-
+ï»¿
 #include <stdio.h>
 #include "pcaphelper.h"
 
@@ -36,17 +36,17 @@ int main(int argc, char *argv[])
 #else
 		appname = argv[0];
 #endif
-		fprintf(stderr, "ÃüÁîĞĞ²ÎÊı´íÎó£¡\n");
-		fprintf(stderr,	"ÕıÈ·µÄµ÷ÓÃ¸ñÊ½Àı×ÓÈçÏÂ£º\n");
+		fprintf(stderr, "å‘½ä»¤è¡Œå‚æ•°é”™è¯¯ï¼\n");
+		fprintf(stderr,	"æ­£ç¡®çš„è°ƒç”¨æ ¼å¼ä¾‹å­å¦‚ä¸‹ï¼š\n");
 		fprintf(stderr,	"    %s username password\n", appname);
 		fprintf(stderr,	"    %s username password eth0\n", appname);
 		fprintf(stderr,	"    %s username password eth1\n", appname);
-		fprintf(stderr, "(×¢£ºÈô²»Ö¸Ã÷Íø¿¨£¬Ä¬ÈÏÇé¿öÏÂ½«»á½øĞĞÍø¿¨Ñ¡Ôñ)\n");
+		fprintf(stderr, "(æ³¨ï¼šè‹¥ä¸æŒ‡æ˜ç½‘å¡ï¼Œé»˜è®¤æƒ…å†µä¸‹å°†ä¼šè¿›è¡Œç½‘å¡é€‰æ‹©)\n");
 		exit(-1);
 	} else if (argc == 4) {
-		DeviceName = argv[3]; // ÔÊĞí´ÓÃüÁîĞĞÖ¸¶¨Éè±¸Ãû
+		DeviceName = argv[3]; // å…è®¸ä»å‘½ä»¤è¡ŒæŒ‡å®šè®¾å¤‡å
 	} else {
-		// È±Ê¡Çé¿öÏÂÊ¹ÓÃµÄÉè±¸
+		// ç¼ºçœæƒ…å†µä¸‹ä½¿ç”¨çš„è®¾å¤‡
 		char errbuf[PCAP_ERRBUF_SIZE];
 		pcap_if_t *alldevs;
 		pcap_if_t *dev;

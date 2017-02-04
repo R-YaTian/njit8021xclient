@@ -1,4 +1,4 @@
-#ifndef NJIT8021XCLIENT_H
+﻿#ifndef NJIT8021XCLIENT_H
 #define NJIT8021XCLIENT_H
 
 extern const struct GlobalConfig {
