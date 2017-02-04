@@ -158,7 +158,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 		SendStartPkt(adhandle, MAC);
 		DPRINTF("[ ] Client: Start.\n");
 
-		// 等待认证朊务器的回应
+		// 等待认证服务器的回应
 		serverIsFound = false;
 		neednewline = false;
 		bool isFirstResponse = true;
@@ -317,7 +317,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 					// E3137:客户端版本号无效
 					exit(-1);
 				}
-				else if (errtype==0x08) // 可能网络无流量时朊务器结束此次802.1X认证会话
+				else if (errtype==0x08) // 可能网络无流量时服务器结束此次802.1X认证会话
 				{	// 遇此情况客户端立刻发起新的认证会话
 					goto START_AUTHENTICATION;
 				}
