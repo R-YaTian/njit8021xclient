@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <openssl/md5.h>
+#include "md5.h"
 #include "aes.h"
 #include "h3c_dict.h"
 #include "h3c_AES_MD5.h"
