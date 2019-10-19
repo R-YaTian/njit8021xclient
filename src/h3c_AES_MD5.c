@@ -142,8 +142,11 @@ char* get_sig(uint32_t index, int offset, int length, unsigned char* dst)
 	case 0x9F6C10A6:base_address = x9F6C10A6; break;
 	case 0xA9407E26:base_address = xA9407E26; break;
 	case 0xCCF59F07:base_address = xCCF59F07; break;
+    // new E0310
+    case 0x1BCF48C5:base_address = x1BCF48C5; break;
 	default:
 		printf("lookup dict failed.\n"); // 查表失败
+        printf("attempted to lookup 0x%08x\n", index_tmp);
 		base_address = xCCF59F07;
 		break;
 	}

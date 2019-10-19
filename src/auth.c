@@ -148,7 +148,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 		else
 		{	// 延时后重试
 			sleep(1);
-			//DPRINTF(".");
+			DPRINTF(".");
 			SendStartPkt(adhandle, MAC);
 			// NOTE: 这里没有检查网线是否接触不良或已被拔下
 		}
@@ -249,7 +249,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 			uint8_t errtype = captured[22];
 			uint8_t msgsize = captured[23];
 			const char *msg = (const char*) &captured[24];
-			DPRINTF("[%d] Server: Failure.\n", (EAP_ID)captured[19]);
+			DPRINTF("[%d] Server: Failure. errtype %d\n", (EAP_ID)captured[19], (int)errtype);
 			if (errtype==0x09 && msgsize>0)
 			{	// 输出错误提示消息
 				fprintf(stderr, "%s\n", msg);
