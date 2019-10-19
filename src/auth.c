@@ -291,6 +291,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 			DPRINTF("[%d] Server: (H3C data)\n", captured[19]);
 			if (captured[26] == 0x35)
 			{
+                DPRINTF("detected 0x35\n");
 				for (i = 0; i < 32; i++)
 				{
 					AES_MD5req[i] = captured[i + 27];

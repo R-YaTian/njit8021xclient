@@ -102,20 +102,55 @@ char* get_sig(uint32_t index, int offset, int length, unsigned char* dst)
 	{
 		index_tmp = index; // 大端序，如MIPS架构
 	}
-    if (!initialized)
-    {
-        printf("Initializing hash table...");
-        naivehash_init();
-        printf("done\n");
-        initialized = 1;
-    }
-	base_address = naivehash_query(index_tmp);
-    if (base_address == NULL)
-    {
-        printf("lookup dict failed.\n");
-        base_address = x1BCF48C5;
-    }
-
+	switch (index_tmp) // this line works in mips.
+	{
+    // E0310
+    case 0x03CDF437: base_address=x03CDF437; break;
+    case 0x06ADBF60: base_address=x06ADBF60; break;
+    case 0x12544A15: base_address=x12544A15; break;
+    case 0x130C9ADA: base_address=x130C9ADA; break;
+    case 0x17B15B39: base_address=x17B15B39; break;
+    case 0x19A6C03B: base_address=x19A6C03B; break;
+    case 0x1BCF48C5: base_address=x1BCF48C5; break;
+    case 0x1C04B737: base_address=x1C04B737; break;
+    case 0x1CBD7B39: base_address=x1CBD7B39; break;
+    case 0x212E9B02: base_address=x212E9B02; break;
+    case 0x2137957E: base_address=x2137957E; break;
+    case 0x2F24C371: base_address=x2F24C371; break;
+    case 0x35CF3ED4: base_address=x35CF3ED4; break;
+    case 0x377B7FA2: base_address=x377B7FA2; break;
+    case 0x3F363676: base_address=x3F363676; break;
+    case 0x40ACD79D: base_address=x40ACD79D; break;
+    case 0x436F74E0: base_address=x436F74E0; break;
+    case 0x4D1667CB: base_address=x4D1667CB; break;
+    case 0x518A8E61: base_address=x518A8E61; break;
+    case 0x56DBA188: base_address=x56DBA188; break;
+    case 0x65E0B689: base_address=x65E0B689; break;
+    case 0x6D19EB05: base_address=x6D19EB05; break;
+    case 0x842DF988: base_address=x842DF988; break;
+    case 0x89ABEB9C: base_address=x89ABEB9C; break;
+    case 0x8AA4989B: base_address=x8AA4989B; break;
+    case 0x9A9C4F26: base_address=x9A9C4F26; break;
+    case 0x9E8A427F: base_address=x9E8A427F; break;
+    case 0xA49F9D56: base_address=xA49F9D56; break;
+    case 0xADA4E115: base_address=xADA4E115; break;
+    case 0xAEC910AE: base_address=xAEC910AE; break;
+    case 0xBA58E3C3: base_address=xBA58E3C3; break;
+    case 0xBB701B4C: base_address=xBB701B4C; break;
+    case 0xBFBAB666: base_address=xBFBAB666; break;
+    case 0xC424E9EA: base_address=xC424E9EA; break;
+    case 0xCAC2E8AF: base_address=xCAC2E8AF; break;
+    case 0xCAE3687C: base_address=xCAE3687C; break;
+    case 0xE7CABFD3: base_address=xE7CABFD3; break;
+    case 0xE933C673: base_address=xE933C673; break;
+    case 0xEC439434: base_address=xEC439434; break;
+    case 0xEED0A89C: base_address=xEED0A89C; break;
+	default:
+		printf("lookup dict failed.\n"); // 查表失败
+        printf("attempted to lookup 0x%08x\n", index_tmp);
+		base_address = xBFBAB666;
+		break;
+	}
 	memcpy(dst, base_address + offset, length);
 	return dst;
 }
