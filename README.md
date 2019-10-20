@@ -1,23 +1,26 @@
-njit8021xclient for iNode C0407
+njit8021xclient for iNode V7.30 E0509
 ===
 唔，这个版本也支持inode 7.0中的 h3c-AES-MD5 算法
 
 See ReadMe.html for more details...
 
+Note
+---
+这个版本的`njit8021xclient`经过一些修改，不再依赖autoconf/libssl，且适配福州大学怡山校区/福州大学至诚学院。
+也许我们应该使用`autoconf`的……
+
 Install
 ---
-仅以debian/ubuntu为例：
+仅以Debian/Ubuntu为例：
 
 1. 安装依赖及编译工具链
-    `sudo apt-get install autoconf libtool libpcap-dev libssl-dev pkg-config`
-2. 访问网页 https://github.com/bitdust/njit8021xclient/tree/master
+    `sudo apt-get install autoconf libtool libpcap-dev pkg-config`
+2. 访问网页 https://github.com/bitdust/UMRnInside/tree/master
 3. 点击右侧 Download ZIP 下载源码包
 4. 解压到某一目录（假设为 `~/njit8021xclient-master`)
-5. 进入目录  `cd ~/njit8021xclient-master`
-6. 运行 `autoreconf --install`
-7. 运行 `./configure`
-8. 运行 `make`
-9. 运行 `sudo make install`
+5. 进入目录  `cd ~/njit8021xclient-master/src`
+6. 运行 `make`
+7. `./client`
 
 完成安装。
 
@@ -34,11 +37,10 @@ Fork from
 ---
 https://github.com/tengattack/8021xclient-for-windows
 
-https://github.com/liuqun/njit8021xclient
+https://github.com/bitdust/njit8021xclient
 
 Depends on
 ---
-[libssl](https://wiki.openssl.org/)
 
 [libpcap](http://www.tcpdump.org/)
 
