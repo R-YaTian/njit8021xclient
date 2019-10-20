@@ -32,7 +32,7 @@ typedef uint8_t EAP_ID;
 const uint8_t BroadcastAddr[6] = {0xff,0xff,0xff,0xff,0xff,0xff}; // 广播MAC地址
 const uint8_t MultcastAddr[6]  = {0x01,0x80,0xc2,0x00,0x00,0x03}; // 多播MAC地址
 //const char H3C_VERSION[16]="CH\x11V7.10-0313"; // 华为客户端版本号
-const char H3C_VERSION[16]="CH\x11V7.10-0310"; // 华为客户端版本号
+const char H3C_VERSION[16]="CH\x11V7.30-0509"; // 华为客户端版本号
 //const char H3C_KEY[64]    ="HuaWei3COM1X";  // H3C的固定密钥
 const char H3C_KEY[64]  ="Oly5D62FaE94W7";  // H3C的另一个固定密钥，网友取自MacOSX版本的iNode官方客户端
 
@@ -148,7 +148,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 		else
 		{	// 延时后重试
 			sleep(1);
-			//DPRINTF(".");
+			DPRINTF(".");
 			SendStartPkt(adhandle, MAC);
 			// NOTE: 这里没有检查网线是否接触不良或已被拔下
 		}
@@ -249,7 +249,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 			uint8_t errtype = captured[22];
 			uint8_t msgsize = captured[23];
 			const char *msg = (const char*) &captured[24];
-			DPRINTF("[%d] Server: Failure.\n", (EAP_ID)captured[19]);
+			DPRINTF("[%d] Server: Failure. errtype %d\n", (EAP_ID)captured[19], (int)errtype);
 			if (errtype==0x09 && msgsize>0)
 			{	// 输出错误提示消息
 				fprintf(stderr, "%s\n", msg);
@@ -291,6 +291,7 @@ int Authentication(const char *UserName, const char *Password, const char *Devic
 			DPRINTF("[%d] Server: (H3C data)\n", captured[19]);
 			if (captured[26] == 0x35)
 			{
+                DPRINTF("detected 0x35\n");
 				for (i = 0; i < 32; i++)
 				{
 					AES_MD5req[i] = captured[i + 27];
@@ -337,7 +338,9 @@ return;
 static
 void SendStartPkt(pcap_t *handle, const uint8_t localmac[])
 {
-uint8_t packet[18];
+//uint8_t packet[18];
+uint8_t packet[64]; // should it be?
+memset(packet, 0, sizeof(packet));
 
 // Ethernet Header (14 Bytes)
 memcpy(packet, BroadcastAddr, 6);
@@ -352,10 +355,10 @@ packet[16] = packet[17] =0x00;// Length=0x0000
 
 // 为了兼容不同院校的网络配置，这里发送两遍Start包
 // 1、广播发送Strat包
-pcap_sendpacket(handle, packet, sizeof(packet));
-// 2、多播发送Strat包
-//memcpy(packet, MultcastAddr, 6);
 //pcap_sendpacket(handle, packet, sizeof(packet));
+// 2、多播发送Strat包
+memcpy(packet, MultcastAddr, 6);
+pcap_sendpacket(handle, packet, sizeof(packet));
 }
 
 
@@ -474,6 +477,8 @@ memcpy(response+20, &eaplen, sizeof(eaplen));
 
 // 发送
 pcap_sendpacket(adhandle, response, i);
+// 也许要两次？
+pcap_sendpacket(adhandle, response, i);
 return;
 }
 
@@ -548,7 +553,8 @@ assert((EAP_Type)request[22] == MD5);
 
 usernamelen = strlen(username);
 eaplen = htons(22+usernamelen);
-packetlen = 14+4+22+usernamelen; // ethhdr+EAPOL+EAP+usernamelen
+//packetlen = 14+4+22+usernamelen; // ethhdr+EAPOL+EAP+usernamelen
+packetlen = 60;
 
 // Fill Ethernet header
 memcpy(response, ethhdr, 14);
@@ -572,6 +578,8 @@ memcpy(response, ethhdr, 14);
 	// }
 // }
 
+pcap_sendpacket(handle, response, packetlen);
+// 又双。。。
 pcap_sendpacket(handle, response, packetlen);
 }
 

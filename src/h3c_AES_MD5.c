@@ -2,14 +2,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <openssl/md5.h>
+#include "md5.h"
 #include "aes.h"
 #include "h3c_dict.h"
+#include "naivehash.h"
 #include "h3c_AES_MD5.h"
 
 /* 大小端问题 */
 //大小端检测，如果 ENDIANNESS=='l' 则为小端
 static union { char c[4]; unsigned long mylong; } endian_test = {{ 'l', '?', '?', 'b' } }; 
+static int initialized = 0;
 #define ENDIANNESS ((char)endian_test.mylong)
 //大小端转换
 #define BigLittleSwap32(A) ((((uint32_t)(A)&0xff000000)>>24)|\
@@ -102,49 +104,51 @@ char* get_sig(uint32_t index, int offset, int length, unsigned char* dst)
 	}
 	switch (index_tmp) // this line works in mips.
 	{
-	case 0x15D0EADF:base_address = x15D0EADF; break;
-	case 0x09F40DE7:base_address = x09F40DE7; break;
-	case 0x189DF2CE:base_address = x189DF2CE; break;
-	case 0x1A8AED5C:base_address = x1A8AED5C; break;
-	case 0x2F40F9D8:base_address = x2F40F9D8; break;
-	case 0x45941B98:base_address = x45941B98; break;
-	case 0x359F23C3:base_address = x359F23C3; break;
-	case 0x4167F618:base_address = x4167F618; break;
-	case 0x4BEE2975:base_address = x4BEE2975; break;
-	case 0x57F612DD:base_address = x57F612DD; break;
-	case 0x36D426DD:base_address = x36D426DD; break;
-	case 0x5E51B55F:base_address = x5E51B55F; break;
-	case 0xF245C41D:base_address = xF245C41D; break;
-	case 0x545CEFE0:base_address = x545CEFE0; break;
-	case 0x5E08D0E0:base_address = x5E08D0E0; break;
-	case 0x5E877108:base_address = x5E877108; break;
-	case 0x7130F3A5:base_address = x7130F3A5; break;
-	case 0x6DD9572F:base_address = x6DD9572F; break;
-	case 0x67195BB6:base_address = x67195BB6; break;
-	case 0x70886376:base_address = x70886376; break;
-	case 0x7137CD3A:base_address = x7137CD3A; break;
-	case 0xEF432FB9:base_address = xEF432FB9; break;
-	case 0xED4B7E03:base_address = xED4B7E03; break;
-	case 0xF1C07C91:base_address = xF1C07C91; break;
-	case 0xE45C3124:base_address = xE45C3124; break;
-	case 0xDAB58841:base_address = xDAB58841; break;
-	case 0xDA58A32E:base_address = xDA58A32E; break;
-	case 0xDF977247:base_address = xDF977247; break;
-	case 0xEAE0E002:base_address = xEAE0E002; break;
-	case 0xC3A46827:base_address = xC3A46827; break;
-	case 0xB0F2918A:base_address = xB0F2918A; break;
-	case 0xAF4ED407:base_address = xAF4ED407; break;
-	case 0xBB9EC2E1:base_address = xBB9EC2E1; break;
-	case 0xA8902F8B:base_address = xA8902F8B; break;
-	case 0xA3747988:base_address = xA3747988; break;
-	case 0x84E4BC95:base_address = x84E4BC95; break;
-	case 0x763F4D5B:base_address = x763F4D5B; break;
-	case 0x9F6C10A6:base_address = x9F6C10A6; break;
-	case 0xA9407E26:base_address = xA9407E26; break;
-	case 0xCCF59F07:base_address = xCCF59F07; break;
+    // E0310
+    case 0x03CDF437: base_address=x03CDF437; break;
+    case 0x06ADBF60: base_address=x06ADBF60; break;
+    case 0x12544A15: base_address=x12544A15; break;
+    case 0x130C9ADA: base_address=x130C9ADA; break;
+    case 0x17B15B39: base_address=x17B15B39; break;
+    case 0x19A6C03B: base_address=x19A6C03B; break;
+    case 0x1BCF48C5: base_address=x1BCF48C5; break;
+    case 0x1C04B737: base_address=x1C04B737; break;
+    case 0x1CBD7B39: base_address=x1CBD7B39; break;
+    case 0x212E9B02: base_address=x212E9B02; break;
+    case 0x2137957E: base_address=x2137957E; break;
+    case 0x2F24C371: base_address=x2F24C371; break;
+    case 0x35CF3ED4: base_address=x35CF3ED4; break;
+    case 0x377B7FA2: base_address=x377B7FA2; break;
+    case 0x3F363676: base_address=x3F363676; break;
+    case 0x40ACD79D: base_address=x40ACD79D; break;
+    case 0x436F74E0: base_address=x436F74E0; break;
+    case 0x4D1667CB: base_address=x4D1667CB; break;
+    case 0x518A8E61: base_address=x518A8E61; break;
+    case 0x56DBA188: base_address=x56DBA188; break;
+    case 0x65E0B689: base_address=x65E0B689; break;
+    case 0x6D19EB05: base_address=x6D19EB05; break;
+    case 0x842DF988: base_address=x842DF988; break;
+    case 0x89ABEB9C: base_address=x89ABEB9C; break;
+    case 0x8AA4989B: base_address=x8AA4989B; break;
+    case 0x9A9C4F26: base_address=x9A9C4F26; break;
+    case 0x9E8A427F: base_address=x9E8A427F; break;
+    case 0xA49F9D56: base_address=xA49F9D56; break;
+    case 0xADA4E115: base_address=xADA4E115; break;
+    case 0xAEC910AE: base_address=xAEC910AE; break;
+    case 0xBA58E3C3: base_address=xBA58E3C3; break;
+    case 0xBB701B4C: base_address=xBB701B4C; break;
+    case 0xBFBAB666: base_address=xBFBAB666; break;
+    case 0xC424E9EA: base_address=xC424E9EA; break;
+    case 0xCAC2E8AF: base_address=xCAC2E8AF; break;
+    case 0xCAE3687C: base_address=xCAE3687C; break;
+    case 0xE7CABFD3: base_address=xE7CABFD3; break;
+    case 0xE933C673: base_address=xE933C673; break;
+    case 0xEC439434: base_address=xEC439434; break;
+    case 0xEED0A89C: base_address=xEED0A89C; break;
 	default:
 		printf("lookup dict failed.\n"); // 查表失败
-		base_address = xCCF59F07;
+        printf("attempted to lookup 0x%08x\n", index_tmp);
+		base_address = xBFBAB666;
 		break;
 	}
 	memcpy(dst, base_address + offset, length);
