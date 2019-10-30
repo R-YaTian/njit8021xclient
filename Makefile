@@ -34,7 +34,7 @@ endef
 define Package/njit8021xclient/install
 	echo "Here is Package/install"
 	$(INSTALL_DIR) $(1)/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/client $(1)/bin/njit-client
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/client $(1)/bin/njit-client
 endef
 
 $(eval $(call BuildPackage,njit8021xclient))
