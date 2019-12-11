@@ -15,7 +15,7 @@ Install
 
 1. 安装依赖及编译工具链
     `sudo apt-get install autoconf libtool libpcap-dev pkg-config`
-2. 访问网页 https://github.com/bitdust/UMRnInside/tree/master
+2. 访问网页 https://github.com/UMRnInside/tree/master
 3. 点击右侧 Download ZIP 下载源码包
 4. 解压到某一目录（假设为 `~/njit8021xclient-master`)
 5. 进入目录  `cd ~/njit8021xclient-master/src`
